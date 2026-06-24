@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 
-/** Label + control wrapper for consistent form spacing. */
 export function Field({
   label,
   children,

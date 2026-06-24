@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 
-/** Inline error banner; renders nothing when there is no message. */
 export function ErrorText({ children }: { children: ReactNode }) {
   if (!children) return null;
   return (

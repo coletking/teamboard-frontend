@@ -6,7 +6,6 @@ export interface ProjectPayload {
   description?: string;
 }
 
-/** Raw HTTP calls for projects and their members. */
 export const projectsController = {
   list: () => apiClient.get<Project[]>('/projects').then((r) => r.data),
 
@@ -22,9 +21,10 @@ export const projectsController = {
   remove: (id: string) =>
     apiClient.delete(`/projects/${id}`).then((r) => r.data),
 
-  // Members
   listMembers: (projectId: string) =>
-    apiClient.get<Member[]>(`/projects/${projectId}/members`).then((r) => r.data),
+    apiClient
+      .get<Member[]>(`/projects/${projectId}/members`)
+      .then((r) => r.data),
 
   invite: (projectId: string, email: string) =>
     apiClient

@@ -32,9 +32,12 @@ export function DashboardPage() {
         </p>
       </div>
 
-      {/* Headline metrics */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard label="Projects" value={data.projectCount} accent="text-indigo-600" />
+        <StatCard
+          label="Projects"
+          value={data.projectCount}
+          accent="text-indigo-600"
+        />
         <StatCard label="Total tasks" value={data.taskCount} />
         {statuses.map((s) => (
           <StatCard
@@ -46,13 +49,15 @@ export function DashboardPage() {
         ))}
       </div>
 
-      {/* Per-project breakdown */}
       <section className="space-y-3">
         <h2 className="font-semibold">Your projects</h2>
         {data.projects.length === 0 ? (
           <p className="rounded-lg border border-dashed border-slate-300 p-8 text-center text-slate-500">
             No projects yet.{' '}
-            <Link to="/projects" className="font-medium text-indigo-600 hover:underline">
+            <Link
+              to="/projects"
+              className="font-medium text-indigo-600 hover:underline"
+            >
               Create one →
             </Link>
           </p>
@@ -69,8 +74,13 @@ export function DashboardPage() {
               </thead>
               <tbody>
                 {data.projects.map((p) => (
-                  <tr key={p.id} className="border-b border-slate-100 last:border-0">
-                    <td className="px-4 py-3 font-medium text-slate-800">{p.name}</td>
+                  <tr
+                    key={p.id}
+                    className="border-b border-slate-100 last:border-0"
+                  >
+                    <td className="px-4 py-3 font-medium text-slate-800">
+                      {p.name}
+                    </td>
                     <td className="px-4 py-3">
                       <Badge tone={p.role === 'admin' ? 'indigo' : 'slate'}>
                         {p.role}

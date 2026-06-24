@@ -8,7 +8,6 @@ const COLUMN_ACCENT: Record<TaskStatus, string> = {
   done: 'border-emerald-300',
 };
 
-/** A droppable status column. Highlights while a card hovers over it. */
 export function TaskColumn({
   status,
   count,

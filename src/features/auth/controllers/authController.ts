@@ -12,7 +12,6 @@ export interface LoginPayload {
   password: string;
 }
 
-/** Raw HTTP calls for authentication. No React/state here. */
 export const authController = {
   signup: (payload: SignupPayload) =>
     apiClient.post<AuthResponse>('/auth/signup', payload).then((r) => r.data),

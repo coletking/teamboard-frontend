@@ -9,7 +9,6 @@ const TONES: Record<Tone, string> = {
   emerald: 'bg-emerald-100 text-emerald-700',
 };
 
-/** Small rounded label used for roles, counts, status, etc. */
 export function Badge({
   tone = 'slate',
   children,

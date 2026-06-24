@@ -1,10 +1,6 @@
 import { Modal } from './Modal';
 import { Button } from './ui/Button';
 
-/**
- * Reusable confirmation dialog — replaces the native `window.confirm`. Used for
- * destructive actions (deleting a project/task, removing a member).
- */
 export function ConfirmModal({
   open,
   title = 'Are you sure?',

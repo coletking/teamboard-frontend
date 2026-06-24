@@ -2,10 +2,6 @@ import { Link } from 'react-router-dom';
 import { Badge } from '../../../components/ui/Badge';
 import type { Project } from '../../../types';
 
-/**
- * One project tile in the grid. Shows the member count and a delete affordance
- * (delete is only attempted by admins; the API enforces it).
- */
 export function ProjectCard({
   project,
   currentUserId,

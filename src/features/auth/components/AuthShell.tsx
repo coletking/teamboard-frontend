@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 
-/** Centered card layout shared by the Login and Signup screens. */
 export function AuthShell({
   title,
   children,

@@ -9,7 +9,6 @@ import { Field } from '../../../components/ui/Field';
 import { ErrorText } from '../../../components/ui/ErrorText';
 import { STATUS_LABELS, TASK_STATUSES, type TaskStatus } from '../../../types';
 
-/** Modal form to add a task; the task lands in the chosen stage (default To Do). */
 export function AddTaskModal({
   projectId,
   open,
@@ -27,7 +26,6 @@ export function AddTaskModal({
   const [status, setStatus] = useState<TaskStatus>(initialStatus);
   const [error, setError] = useState('');
 
-  // Preselect the stage the user opened the modal from.
   useEffect(() => {
     if (open) setStatus(initialStatus);
   }, [open, initialStatus]);

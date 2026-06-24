@@ -4,7 +4,8 @@ type Variant = 'primary' | 'secondary' | 'danger';
 
 const VARIANTS: Record<Variant, string> = {
   primary: 'bg-indigo-600 text-white hover:bg-indigo-700',
-  secondary: 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-100',
+  secondary:
+    'border border-slate-300 bg-white text-slate-700 hover:bg-slate-100',
   danger: 'bg-red-600 text-white hover:bg-red-700',
 };
 
@@ -12,7 +13,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;
 }
 
-/** Themed button with primary/secondary/danger variants. */
 export function Button({
   variant = 'primary',
   className = '',

@@ -5,10 +5,6 @@ import { Button } from '../../../components/ui/Button';
 import { Input } from '../../../components/ui/Input';
 import { ErrorText } from '../../../components/ui/ErrorText';
 
-/**
- * Admin-only form to invite a teammate by email. Surfaces a notice with the
- * default password when a brand-new account is created for the invitee.
- */
 export function InviteMemberForm({ projectId }: { projectId: string }) {
   const invite = useInviteMember(projectId);
   const [email, setEmail] = useState('');

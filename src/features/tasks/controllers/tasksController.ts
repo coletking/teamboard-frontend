@@ -13,7 +13,6 @@ export interface UpdateTaskPayload {
   status?: TaskStatus;
 }
 
-/** Raw HTTP calls for tasks. */
 export const tasksController = {
   listForProject: (projectId: string) =>
     apiClient.get<Task[]>(`/projects/${projectId}/tasks`).then((r) => r.data),

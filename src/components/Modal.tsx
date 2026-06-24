@@ -1,10 +1,5 @@
 import { useEffect, type ReactNode } from 'react';
 
-/**
- * Accessible modal shell: dims the background, closes on Escape or backdrop
- * click, and centers its content. Feature modals (add task, confirm delete)
- * compose this.
- */
 export function Modal({
   open,
   onClose,

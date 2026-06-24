@@ -1,6 +1,5 @@
 import type { InputHTMLAttributes } from 'react';
 
-/** Styled text input. */
 export function Input({
   className = '',
   ...props

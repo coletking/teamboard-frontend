@@ -2,10 +2,6 @@ import { useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import type { Task } from '../../../types';
 
-/**
- * A draggable task card. The whole card is the drag handle; a small ✕ deletes
- * it. `useDraggable` exposes the listeners/attributes we spread onto the card.
- */
 export function TaskCard({
   task,
   onDelete,
@@ -32,7 +28,6 @@ export function TaskCard({
       <div className="flex items-start justify-between gap-2">
         <p className="text-sm font-medium text-slate-800">{task.title}</p>
         <button
-          // Stop pointer events from starting a drag when deleting.
           onPointerDown={(e) => e.stopPropagation()}
           onClick={() => onDelete(task)}
           className="text-xs text-slate-400 hover:text-red-600"

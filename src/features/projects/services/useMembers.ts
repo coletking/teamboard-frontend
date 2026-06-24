@@ -15,8 +15,7 @@ export function useInviteMember(projectId: string) {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (email: string) => projectsController.invite(projectId, email),
-    onSuccess: () =>
-      qc.invalidateQueries({ queryKey: membersKey(projectId) }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: membersKey(projectId) }),
   });
 }
 
@@ -25,7 +24,6 @@ export function useRemoveMember(projectId: string) {
   return useMutation({
     mutationFn: (userId: string) =>
       projectsController.removeMember(projectId, userId),
-    onSuccess: () =>
-      qc.invalidateQueries({ queryKey: membersKey(projectId) }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: membersKey(projectId) }),
   });
 }

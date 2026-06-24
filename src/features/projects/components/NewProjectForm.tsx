@@ -7,7 +7,6 @@ import { Textarea } from '../../../components/ui/Textarea';
 import { Field } from '../../../components/ui/Field';
 import { ErrorText } from '../../../components/ui/ErrorText';
 
-/** Inline form to create a new project (creator becomes its admin). */
 export function NewProjectForm() {
   const createProject = useCreateProject();
   const [name, setName] = useState('');

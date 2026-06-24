@@ -1,6 +1,5 @@
 import type { TextareaHTMLAttributes } from 'react';
 
-/** Styled multiline text area. */
 export function Textarea({
   className = '',
   ...props

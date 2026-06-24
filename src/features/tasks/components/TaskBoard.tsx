@@ -12,10 +12,6 @@ import { ConfirmModal } from '../../../components/ConfirmModal';
 import { useState } from 'react';
 import { TASK_STATUSES, type Task, type TaskStatus } from '../../../types';
 
-/**
- * The Kanban board. Renders the three status columns and wires up drag-and-drop:
- * dropping a card on a column updates the task's status via the API.
- */
 export function TaskBoard({
   projectId,
   tasks,
@@ -29,7 +25,6 @@ export function TaskBoard({
   const deleteTask = useDeleteTask(projectId);
   const [toDelete, setToDelete] = useState<Task | null>(null);
 
-  // Require a small drag distance so clicking the ✕ doesn't start a drag.
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
   );

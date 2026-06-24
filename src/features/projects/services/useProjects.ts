@@ -6,8 +6,6 @@ import {
 
 const LIST_KEY = ['projects'];
 
-/** React Query hooks (the "service" layer) wrapping the projects controller. */
-
 export function useProjects() {
   return useQuery({ queryKey: LIST_KEY, queryFn: projectsController.list });
 }

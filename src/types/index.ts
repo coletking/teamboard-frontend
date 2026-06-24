@@ -1,6 +1,3 @@
-// Shared domain types — mirror the backend DTOs/schemas so the API contract is
-// typed end-to-end. In a monorepo these would live in a shared package.
-
 export interface User {
   id: string;
   name: string;
@@ -27,11 +24,10 @@ export interface Project {
   members: ProjectMemberRef[];
   createdAt: string;
   updatedAt: string;
-  /** The current user's role, attached by the API on single-project fetch. */
+
   myRole?: ProjectRole;
 }
 
-/** A member with full user details (from the members endpoint). */
 export interface Member {
   id: string;
   name: string;
@@ -41,7 +37,7 @@ export interface Member {
 
 export interface InviteResult {
   member: Member;
-  /** True when a brand-new account was created for the invitee. */
+
   created: boolean;
 }
 

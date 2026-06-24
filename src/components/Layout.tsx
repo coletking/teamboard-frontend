@@ -6,7 +6,6 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? 'text-indigo-600' : 'text-slate-500 hover:text-slate-800'
   }`;
 
-/** App shell: top bar with brand, nav and user menu, plus the routed page. */
 export function Layout() {
   const { user, logout } = useAuth();
 

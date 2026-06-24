@@ -17,11 +17,9 @@ export default function App() {
       <BrowserRouter>
         <AuthProvider>
           <Routes>
-            {/* Public */}
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
 
-            {/* Protected */}
             <Route element={<ProtectedRoute />}>
               <Route element={<Layout />}>
                 <Route path="/" element={<DashboardPage />} />

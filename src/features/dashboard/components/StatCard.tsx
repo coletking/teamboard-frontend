@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 
-/** A single headline metric tile on the dashboard. */
 export function StatCard({
   label,
   value,

@@ -8,10 +8,6 @@ import { ConfirmModal } from '../../../components/ConfirmModal';
 import { ErrorText } from '../../../components/ui/ErrorText';
 import type { Member } from '../../../types';
 
-/**
- * Shows the project's members and, for admins, the invite form plus the ability
- * to remove members (the owner cannot be removed).
- */
 export function MembersPanel({
   projectId,
   isAdmin,

@@ -1,10 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../features/auth/services/AuthContext';
 
-/**
- * Gate for authenticated routes. While the session is being restored we show a
- * loading state; unauthenticated users are redirected to /login.
- */
 export function ProtectedRoute() {
   const { user, isLoading } = useAuth();
 

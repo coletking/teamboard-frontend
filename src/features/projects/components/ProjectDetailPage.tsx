@@ -14,7 +14,7 @@ export function ProjectDetailPage() {
   const { id = '' } = useParams();
   const project = useProject(id);
   const tasks = useTasks(id);
-  // null = modal closed; a status = modal open, preselected to that stage.
+
   const [addStatus, setAddStatus] = useState<TaskStatus | null>(null);
 
   if (project.isLoading) {
@@ -23,8 +23,13 @@ export function ProjectDetailPage() {
   if (project.isError || !project.data) {
     return (
       <div className="space-y-3">
-        <ErrorText>{getErrorMessage(project.error, 'Project not found')}</ErrorText>
-        <Link to="/projects" className="text-sm text-indigo-600 hover:underline">
+        <ErrorText>
+          {getErrorMessage(project.error, 'Project not found')}
+        </ErrorText>
+        <Link
+          to="/projects"
+          className="text-sm text-indigo-600 hover:underline"
+        >
           ← Back to projects
         </Link>
       </div>
@@ -37,12 +42,17 @@ export function ProjectDetailPage() {
     <div className="space-y-8">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <Link to="/projects" className="text-sm text-indigo-600 hover:underline">
+          <Link
+            to="/projects"
+            className="text-sm text-indigo-600 hover:underline"
+          >
             ← Projects
           </Link>
           <div className="mt-2 flex items-center gap-2">
             <h1 className="text-2xl font-bold">{project.data.name}</h1>
-            <Badge tone={isAdmin ? 'indigo' : 'slate'}>{project.data.myRole}</Badge>
+            <Badge tone={isAdmin ? 'indigo' : 'slate'}>
+              {project.data.myRole}
+            </Badge>
           </div>
           {project.data.description && (
             <p className="text-sm text-slate-500">{project.data.description}</p>
