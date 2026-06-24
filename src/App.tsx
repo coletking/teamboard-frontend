@@ -9,6 +9,7 @@ import { SignupPage } from './features/auth/components/SignupPage';
 import { DashboardPage } from './features/dashboard/components/DashboardPage';
 import { ProjectsPage } from './features/projects/components/ProjectsPage';
 import { ProjectDetailPage } from './features/projects/components/ProjectDetailPage';
+import { MembersPage } from './features/projects/components/MembersPage';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
                 <Route path="/" element={<DashboardPage />} />
                 <Route path="/projects" element={<ProjectsPage />} />
                 <Route path="/projects/:id" element={<ProjectDetailPage />} />
+                <Route path="/projects/:id/members" element={<MembersPage />} />
               </Route>
             </Route>
 

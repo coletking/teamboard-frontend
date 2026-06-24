@@ -19,9 +19,11 @@ import { TASK_STATUSES, type Task, type TaskStatus } from '../../../types';
 export function TaskBoard({
   projectId,
   tasks,
+  onAddToStage,
 }: {
   projectId: string;
   tasks: Task[];
+  onAddToStage: (status: TaskStatus) => void;
 }) {
   const updateTask = useUpdateTask(projectId);
   const deleteTask = useDeleteTask(projectId);
@@ -58,6 +60,7 @@ export function TaskBoard({
                 key={status}
                 status={status}
                 count={columnTasks.length}
+                onAdd={() => onAddToStage(status)}
               >
                 {columnTasks.map((task) => (
                   <TaskCard key={task._id} task={task} onDelete={setToDelete} />

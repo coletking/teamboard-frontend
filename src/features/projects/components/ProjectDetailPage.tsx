@@ -4,17 +4,18 @@ import { useProject } from '../services/useProjects';
 import { useTasks } from '../../tasks/services/useTasks';
 import { TaskBoard } from '../../tasks/components/TaskBoard';
 import { AddTaskModal } from '../../tasks/components/AddTaskModal';
-import { MembersPanel } from './MembersPanel';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { Button } from '../../../components/ui/Button';
 import { Badge } from '../../../components/ui/Badge';
 import { ErrorText } from '../../../components/ui/ErrorText';
+import type { TaskStatus } from '../../../types';
 
 export function ProjectDetailPage() {
   const { id = '' } = useParams();
   const project = useProject(id);
   const tasks = useTasks(id);
-  const [addOpen, setAddOpen] = useState(false);
+  // null = modal closed; a status = modal open, preselected to that stage.
+  const [addStatus, setAddStatus] = useState<TaskStatus | null>(null);
 
   if (project.isLoading) {
     return <p className="text-slate-500">Loading project…</p>;
@@ -47,27 +48,33 @@ export function ProjectDetailPage() {
             <p className="text-sm text-slate-500">{project.data.description}</p>
           )}
         </div>
-        <Button onClick={() => setAddOpen(true)}>+ Add task</Button>
+        <div className="flex items-center gap-2">
+          <Link to={`/projects/${id}/members`}>
+            <Button variant="secondary">
+              Members ({project.data.members.length})
+            </Button>
+          </Link>
+          <Button onClick={() => setAddStatus('todo')}>+ Add task</Button>
+        </div>
       </div>
 
-      <div className="grid gap-8 lg:grid-cols-[1fr_300px]">
-        {/* Board */}
-        <section>
-          {tasks.isLoading && <p className="text-slate-500">Loading tasks…</p>}
-          {tasks.isError && <ErrorText>{getErrorMessage(tasks.error)}</ErrorText>}
-          {tasks.data && <TaskBoard projectId={id} tasks={tasks.data} />}
-        </section>
-
-        {/* Members sidebar */}
-        <aside>
-          <MembersPanel projectId={id} isAdmin={isAdmin} />
-        </aside>
-      </div>
+      <section>
+        {tasks.isLoading && <p className="text-slate-500">Loading tasks…</p>}
+        {tasks.isError && <ErrorText>{getErrorMessage(tasks.error)}</ErrorText>}
+        {tasks.data && (
+          <TaskBoard
+            projectId={id}
+            tasks={tasks.data}
+            onAddToStage={setAddStatus}
+          />
+        )}
+      </section>
 
       <AddTaskModal
         projectId={id}
-        open={addOpen}
-        onClose={() => setAddOpen(false)}
+        open={addStatus !== null}
+        initialStatus={addStatus ?? 'todo'}
+        onClose={() => setAddStatus(null)}
       />
     </div>
   );

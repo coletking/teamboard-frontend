@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import { useCreateTask } from '../services/useTasks';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { Modal } from '../../../components/Modal';
@@ -13,17 +13,24 @@ import { STATUS_LABELS, TASK_STATUSES, type TaskStatus } from '../../../types';
 export function AddTaskModal({
   projectId,
   open,
+  initialStatus = 'todo',
   onClose,
 }: {
   projectId: string;
   open: boolean;
+  initialStatus?: TaskStatus;
   onClose: () => void;
 }) {
   const createTask = useCreateTask(projectId);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [status, setStatus] = useState<TaskStatus>('todo');
+  const [status, setStatus] = useState<TaskStatus>(initialStatus);
   const [error, setError] = useState('');
+
+  // Preselect the stage the user opened the modal from.
+  useEffect(() => {
+    if (open) setStatus(initialStatus);
+  }, [open, initialStatus]);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
