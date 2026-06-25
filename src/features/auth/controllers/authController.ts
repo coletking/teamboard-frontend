@@ -19,5 +19,7 @@ export const authController = {
   login: (payload: LoginPayload) =>
     apiClient.post<AuthResponse>('/auth/login', payload).then((r) => r.data),
 
+  logout: () => apiClient.post('/auth/logout').then((r) => r.data),
+
   me: () => apiClient.get<User>('/auth/me').then((r) => r.data),
 };

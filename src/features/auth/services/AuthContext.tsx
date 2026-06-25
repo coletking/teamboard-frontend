@@ -6,7 +6,6 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-import { tokenStore } from '../../../api/client';
 import {
   authController,
   type LoginPayload,
@@ -19,7 +18,7 @@ interface AuthContextValue {
   isLoading: boolean;
   login: (payload: LoginPayload) => Promise<void>;
   signup: (payload: SignupPayload) => Promise<void>;
-  logout: () => void;
+  logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
@@ -28,33 +27,32 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Restore the session from the httpOnly cookie via /auth/me. A 401 simply
+  // means "not logged in" — no token is read in JS.
   useEffect(() => {
-    const token = tokenStore.get();
-    if (!token) {
-      setIsLoading(false);
-      return;
-    }
     authController
       .me()
       .then(setUser)
-      .catch(() => tokenStore.clear())
+      .catch(() => setUser(null))
       .finally(() => setIsLoading(false));
   }, []);
 
   async function login(payload: LoginPayload) {
-    const { accessToken, user } = await authController.login(payload);
-    tokenStore.set(accessToken);
+    const { user } = await authController.login(payload);
     setUser(user);
   }
 
   async function signup(payload: SignupPayload) {
-    const { accessToken, user } = await authController.signup(payload);
-    tokenStore.set(accessToken);
+    const { user } = await authController.signup(payload);
     setUser(user);
   }
 
-  function logout() {
-    tokenStore.clear();
+  async function logout() {
+    try {
+      await authController.logout();
+    } catch {
+      // Ignore network errors on logout; we clear local state regardless.
+    }
     setUser(null);
   }
 
