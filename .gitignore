@@ -27,3 +27,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local-only docs (not tracked in the repo)
+FILE_GUIDE.md
